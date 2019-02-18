@@ -1,0 +1,8 @@
+- composer:
+  command: "install"
+  working_dir: "{{ laravel_dir }}"
+
+- composer:
+  command: "update"
+  working_dir: "{{ laravel_dir }}"
+

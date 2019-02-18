@@ -1,0 +1,3 @@
+- name: disable SELinux
+  sudo: yes
+  selinux: state=disabled

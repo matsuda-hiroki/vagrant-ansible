@@ -1,0 +1,10 @@
+- name: install epel
+  yum: name=epel-release
+
+- name: install nodejs
+  yum: name=nodejs
+
+- name: install npm
+  yum: name={{ item }} state=present enablerepo=epel
+  with_items:
+    - npm

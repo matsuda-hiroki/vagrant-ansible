@@ -1,0 +1,15 @@
+- name: zone setting
+  lineinfile: >
+    dest=/etc/sysconfig/clock
+    regexp='ZONE=.*'
+    line='ZONE="Asia/Tokyo"'
+- name: utc setting
+  lineinfile: >
+    dest=/etc/sysconfig/clock
+    line='UTC="false"'
+- name: link localtime
+  file: >
+    src=/usr/share/zoneinfo/Asia/Tokyo
+    dest=/etc/localtime
+    state=link
+    force=yes

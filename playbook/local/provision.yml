@@ -1,0 +1,22 @@
+---
+- hosts: 192.168.33.11
+  user: root
+  vars_files:
+    - ../../vars/common.yml
+  roles:
+    # (common)selinux etc
+    - ../../roles/local/selinux/disabled
+    - ../../roles/local/localtime/jst
+    # (common)applications
+    - ../../roles/local/app/required
+    - ../../roles/local/app/option
+    # (database)mysql
+    - ../../roles/local/mysql/install
+    - ../../roles/local/mysql/user
+    - ../../roles/local/mysql/create
+    # (web)apache+php+tools
+    - ../../roles/local/apache/install
+    - ../../roles/local/apache/start
+    - ../../roles/local/php/install
+    - ../../roles/local/composer/install
+    - ../../roles/local/nodejs/install

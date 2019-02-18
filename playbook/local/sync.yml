@@ -1,0 +1,7 @@
+---
+- hosts: 192.168.33.11
+  user: laravel
+  vars_files:
+    - ../../vars/common.yml
+  roles:
+    - ../../roles/local/laravel/sync

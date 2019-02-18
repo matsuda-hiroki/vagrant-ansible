@@ -1,0 +1,16 @@
+- name: install mysql
+  yum: name={{item}}
+  with_items:
+    - mysql-server
+    - MySQL-python
+
+- name: set config
+  template:
+    src=my.cnf.j2
+    dest=/etc/my.cnf
+    owner=root
+    group=root
+    mode=0755
+
+- name: start mysql
+  service: name=mysqld state=started enabled=yes

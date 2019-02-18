@@ -1,0 +1,10 @@
+- name: install required tools
+  yum: name={{ item }} state=latest
+  with_items:
+    - vim
+    - wget
+    - git
+    - mod_ssl
+    - zip
+    - unzip
+    - openssh-clients

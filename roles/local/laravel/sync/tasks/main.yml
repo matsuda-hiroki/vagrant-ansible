@@ -1,0 +1,50 @@
+- name: Clone the repo
+  git:
+    repo={{ laravel_repos }}
+    dest={{ laravel_dir }}
+    version={{ laravel_branch_name }}
+    accept_hostkey=yes
+    ssh_opts="-o StrictHostKeyChecking=no"
+
+- name: set owner
+  file:
+    path={{ laravel_dir }}
+    owner={{ apache_user_name }}
+    group={{ apache_group_name }}
+    recurse=yes
+
+- name: set permission
+  file:
+    path={{ laravel_dir }}/storage
+    state=directory
+    mode=0777
+    recurse=yes
+
+- name: set permission
+  file:
+    path={{ laravel_dir }}/bootstrap/cache
+    state=directory
+    mode=0777
+    recurse=yes
+
+- name: httpd.conf setting
+  template: src=httpd.conf.j2 dest=/etc/httpd/conf/httpd.conf
+  sudo: yes
+
+- name: restart httpd
+  service: name=httpd state=restarted
+  sudo: yes
+
+- name: setting env owner
+  file:
+    path={{ laravel_dir }}/.env
+    owner={{ apache_user_name }}
+    group={{ apache_group_name }}
+
+- name: make lockfile directory
+  file:
+    path={{ laravel_dir }}/storage/app/batch/lock
+    state=directory
+    owner={{ apache_user_name }}
+    group={{ apache_group_name }}
+    mode=0777

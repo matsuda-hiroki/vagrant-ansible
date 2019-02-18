@@ -1,0 +1,18 @@
+# local mysql
+mysql_host_ip: 127.0.0.1
+mysql_database_name: homestead
+mysql_database_name_test: testing
+mysql_user_name: homestead
+mysql_user_password: secret
+mysql_url: http://dev.mysql.com/get/Downloads/MySQL-5.6
+mysql_ver: "5.6.26-1"
+
+# local web
+apache_user_name: apache
+apache_group_name: wheel
+
+# laravel conf
+laravel_repos: DUMMY
+laravel_branch_name: master
+env_name: local
+laravel_dir: /home/laravel/laravel_repository

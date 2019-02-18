@@ -1,0 +1,39 @@
+- name: Add repository 'remi-repo'
+  yum: name=http://rpms.famillecollet.com/enterprise/remi-release-6.rpm state=present
+
+- name: Add repository 'epel-repo'
+  yum: name=http://ftp-srv2.kddilabs.jp/Linux/distributions/fedora/epel/6/x86_64/epel-release-6-8.noarch.rpm state=present
+
+- name: Add repository 'rpmforge-repo'
+  yum: name=http://ftp.riken.jp/Linux/repoforge/redhat/el6/en/x86_64/rpmforge/RPMS/rpmforge-release-0.5.3-1.el6.rf.x86_64.rpm state=present
+
+- name: Install php
+  yum: name={{ item }} state=present enablerepo=remi,remi-php56,epel,rpmforge
+  with_items:
+    - php
+    - php-mbstring
+    - php-mysql
+    - php-xml
+    - php-mcrypt.x86_64
+    - php-soap
+    - php-pear
+    - php-curl
+    - php-devel
+
+- name: set php timezone
+  replace: >
+    dest=/etc/php.ini
+    regexp="^;date\.timezone ="
+    replace="date.timezone = Asia/Tokyo"
+
+- name: set memory limit
+  lineinfile: dest=/etc/php.ini
+    regexp='^memory_limit ='
+    line='memory_limit = 512M'
+
+- name: add extension
+  lineinfile:
+    dest=/etc/php.ini
+    line={{ item }}
+  with_items:
+    - 'zend_extension=/usr/lib64/php/modules/xdebug.so'
