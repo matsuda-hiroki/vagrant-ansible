@@ -1,5 +1,5 @@
 # laravel環境構築用
-laravelのvagrantの練習用
+vagrant-ansibleを利用した、laravel環境構築
 
 ## 免責事項
 利用の際は自己責任でお願いします。
@@ -21,8 +21,8 @@ virtualbox https://www.virtualbox.org/
 
 ## 手順
 ```
-  - CLIを起動し、cloneしたフォルダへ移動する (Win：コマンドプロンプト)
-  - 下記コマンドを実行してローカル環境の構築を行う
+CLIを起動し、cloneしたフォルダへ移動する (Win：コマンドプロンプト)
+下記コマンドを実行してローカル環境の構築を行う
 git clone {this repo}
 vagrant up
 ```
